@@ -34,13 +34,13 @@ function setup() {
 
 	starBody = Bodies.circle(650 , 30 , 5 , {restitution:0.5, isStatic:true});
 	World.add(world, starBody);
-	
-	Engine.run(engine);
+	Engine.run(engine); //THIS IS THE ONLY CHANGE
 
 }
 
 
 function draw() {
+
   background(bgImg);
 
   star.x= starBody.position.x 
@@ -48,22 +48,20 @@ function draw() {
 
   if(star.y > 470){
 	Body.setStatic(starBody,true);}
-  drawSprites();
+
+  if(keyDown(RIGHT_ARROW)){
+		fairy.x = fairy.x + 20;
+  }
+ 
+  if(keyDown(LEFT_ARROW)){
+	fairy.x = fairy.x - 20;
+  }
+
+  if (keyDown(DOWN_ARROW)) {
+	Body.setStatic(starBody,false); 
+  }
+  
+	drawSprites();
 
 }
 
-function keyPressed() {
-	if(keyCode === RIGHT_ARROW){
-           fairy.x = fairy.x + 20;
-	}
-	
-        if(keyCode === LEFT_ARROW){
-           fairy.x = fairy.x - 20;
-	}
-
-	if (keyCode === DOWN_ARROW) {
-		Body.setStatic(starBody,false); 
-	}
-
-
-}
